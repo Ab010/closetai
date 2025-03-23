@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosetAI - Your Smart Wardrobe Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E2B58C;
+            --secondary-color: #8CC8B1;
+            --text-color: #333;
+            --bg-color: #FAF9F6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .tagline {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            min-width: 260px;
+        }
+        
+        .feature-card:nth-child(1) {
+            top: 20px;
+            right: -30px;
+        }
+        
+        .feature-card:nth-child(2) {
+            bottom: 20px;
+            left: -30px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .icon-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .icon-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .feature-text h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .feature-text p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* Image uploader */
+        .uploader-section {
+            margin: 60px 0;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .uploader-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .upload-text h3 {
+            margin-bottom: 10px;
+        }
+        
+        .upload-text p {
+            color: #888;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .product-info p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .product-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        #imageFileInput {
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">👔</div>
+                <span>ClosetAI</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Benefits</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn">Join Waitlist</a>
+        </header>
+        
+        <section class="hero">
+            <div class="hero-content">
+                <div class="tagline">THE FUTURE OF FASHION MANAGEMENT</div>
+                <h1>Your Smart Wardrobe Assistant</h1>
+                <p class="hero-description">Let AI transform how you organize, style, and maintain your wardrobe.
+                Never worry about what to wear again.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn">Join Waitlist</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/closetai.jpg" alt="Closet AI">
+                <div class="feature-card">
+                    <div class="feature-icon icon-primary">👔</div>
+                    <div class="feature-text">
+                        <h3>142 items organized</h3>
+                        <p>Complete inventory</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-secondary">✓</div>
+                    <div class="feature-text">
+                        <h3>Perfect outfit selected</h3>
+                        <p>Based on today's weather</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="uploader-section">
+            <h2>Find Similar Clothing Items</h2>
+            <label for="imageFileInput" class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">
+                    <h3>Upload an Image</h3>
+                    <p>Drag & drop or click to upload an image of clothing items</p>
+                </div>
+            </label>
+            <input type="file" id="imageFileInput" accept="image/*">
+            
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Analyzing image and finding similar items...</p>
+            </div>
+            
+            <div class="results-grid" id="resultsGrid">
+                </div>
+        </section>
+    </div>
+    
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <script src='https://unpkg.com/tesseract.js@1.0.19/src/index.js'></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('imageFileInput');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const resultsGrid = document.getElementById('resultsGrid');
+            
+            // Handle upload area click
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // Handle drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#E2B58C';
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = '#ddd';
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#ddd';
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleImageUpload(e.dataTransfer.files[0]);
+                }
+            });
+            
+            // Handle file input change
+            fileInput.addEventListener('change', (e) => {
+                if (fileInput.files.length) {
+                    handleImageUpload(fileInput.files[0]);
+                }
+            });
+            
+            // Process the uploaded image
+            function handleImageUpload(file) {
+                // Clear previous results
+                resultsGrid.innerHTML = '';
+                
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                
+                // Create image URL
+                const imageUrl = URL.createObjectURL(file);
+                
+                // Use Tesseract.js for OCR
+                // Try v2 first, fall back to v1 if needed
+                try {
+                    // For Tesseract.js v2
+                    Tesseract.recognize(
+                        imageUrl,
+                        'eng',
+                        { logger: m => console.log(m) }
+                    ).then(({ data: { text } }) => {
+                        console.log("Extracted Text (v2):", text);
+                        processExtractedText(text);
+                    }).catch(err => {
+                        console.error("OCR Error with v2:", err);
+                        // Try with v1 as fallback
+                        fallbackToV1(imageUrl);
+                    });
+                } catch (err) {
+                    console.error("Error initializing Tesseract v2:", err);
+                    fallbackToV1(imageUrl);
+                }
+            }
+            
+            // Fallback to Tesseract.js v1
+            function fallbackToV1(imageUrl) {
+                try {
+                    // For Tesseract.js v1
+                    const recognition = new Tesseract.TesseractWorker();
+                    recognition.recognize(imageUrl)
+                        .then(result => {
+                            console.log("Extracted Text (v1):", result.text);
+                            processExtractedText(result.text);
+                        })
+                        .catch(err => {
+                            console.error("OCR Error with v1:", err);
+                            loadingIndicator.style.display = 'none';
+                            alert("Error processing image. Please try again.");
+                        });
+                } catch (err) {
+                    console.error("Error with both Tesseract versions:", err);
+                    loadingIndicator.style.display = 'none';
+                    alert("Error initializing OCR. Please check your browser compatibility.");
+                }
+            }
+            
+            // Process the extracted text
+            function processExtractedText(text) {
+                // Extract keywords from text
+                const keywords = extractKeywords(text);
+                console.log("Keywords:", keywords);
+                
+                // Call function to search Myntra API (mock for
