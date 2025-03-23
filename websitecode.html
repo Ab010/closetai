@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 404 Troubleshooting</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Troubleshooting GitHub Pages 404 Errors</h1>
+    <p>If you're encountering a 404 error when accessing your GitHub Pages site, here are some common causes and solutions:</p>
+
+    <h2>Common Causes and Solutions</h2>
+    <ul>
+        <li>
+            <strong>Incorrect Repository Name:</strong>
+            <p>For user/organization pages (<code>username.github.io</code>), the repository name must be exactly <code>username.github.io</code>. For project pages, the repository name can be anything.</p>
+            <p>Ensure your repository name is correct.</p>
+        </li>
+        <li>
+            <strong>Branch Selection:</strong>
+            <p>GitHub Pages typically serves content from the <code>main</code> or <code>gh-pages</code> branch. If you're using a custom domain, it usually serves from the <code>main</code> branch. If you have selected a different branch in your github page settings, ensure your files are in that branch.</p>
+            <p>Go to your repository's "Settings" tab, then "Pages" to check the branch and folder being used.</p>
+        </li>
+        <li>
+            <strong>File Naming:</strong>
+            <p>The entry point of your website should be named <code>index.html</code> (case-sensitive). Make sure this file exists in the root of your chosen branch or the <code>/docs</code> folder if you've selected that as your source.</p>
+            <p>Verify that your <code>index.html</code> file is in the correct location and is named correctly.</p>
+        </li>
+        <li>
+            <strong>Deployment Delays:</strong>
+            <p>After pushing changes to your repository, it can take a few minutes for GitHub Pages to deploy the updated site. Clear your browser cache and try again after a short wait.</p>
+        </li>
+        <li>
+             <strong>Incorrect Path in Links/Scripts:</strong>
+             <p>Double check that all the links to your css, javascript, and other html files are correct. Incorrect relative or absolute paths will cause 404 errors for those resources.</p>
+             <p>Example of correct relative path: <code>&lt;a href="about.html"&gt;About&lt;/a&gt;</code></p>
+             <p>Example of incorrect relative path: <code>&lt;a href="pages/about.html"&gt;About&lt;/a&gt;</code> (if about.html is in the root directory).</p>
+        </li>
+        <li>
+            <strong>Custom Domain Issues:</strong>
+            <p>If you're using a custom domain, check your DNS settings. Ensure that your CNAME or A records are correctly configured.</p>
+            <p>Go to your domain registrar's DNS settings and verify the records.</p>
+        </li>
+        <li>
+            <strong>Build Errors (for Static Site Generators):</strong>
+            <p>If you're using a static site generator (like Jekyll, Hugo, or Next.js), ensure that your build process is successful. Check your repository's Actions tab for any build errors.</p>
+            <p>Example of checking build logs:</p>
+            <pre><code># Go to your repository's "Actions" tab and check the build logs.</code></pre>
+        </li>
+        <li>
+            <strong>Case Sensitivity:</strong>
+            <p>GitHub Pages is case-sensitive. If your file names or paths have incorrect capitalization, you'll encounter 404 errors. </p>
+            <p>Make sure all file names and paths match exactly.</p>
+        </li>
+    </ul>
+
+    <h2>Steps to Check Your GitHub Pages Settings</h2>
+    <ol>
+        <li>Go to your GitHub repository.</li>
+        <li>Click on the "Settings" tab.</li>
+        <li>Scroll down to the "Pages" section.</li>
+        <li>Verify the "Source" branch and folder are correct.</li>
+        <li>Check for any build errors or warnings.</li>
+        <li>If you're using a custom domain, check the "Custom domain" section.</li>
+    </ol>
+</body>
+</html>
