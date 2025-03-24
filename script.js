@@ -1,11 +1,24 @@
-// Join Waitlist Button Functionality
-document.querySelectorAll('.join-waitlist-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        alert('Thank you for joining the waitlist! We will notify you when ClosetAI is ready.');
-    });
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const imageUpload = document.getElementById('imageUpload');
+    const uploadedImagesDiv = document.getElementById('uploadedImages');
 
-// Learn More Button Functionality
-document.querySelector('.learn-more-btn').addEventListener('click', () => {
-    alert('ClosetAI helps you organize your wardrobe, select outfits based on weather, and more!');
+    imageUpload.addEventListener('change', handleImageUpload);
+
+    function handleImageUpload(event) {
+        const files = event.target.files;
+
+        if (files && files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px'; // Adjust size as needed
+                img.style.margin = '10px';
+                uploadedImagesDiv.appendChild(img);
+            };
+
+            reader.readAsDataURL(files[0]);
+        }
+    }
 });
