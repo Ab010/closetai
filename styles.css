@@ -1,0 +1,68 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+header.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+}
+
+header .logo {
+  font-size: 24px;
+}
+
+header .logo span {
+  color: #f39c12;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 50px;
+}
+
+.hero-section h1 {
+  font-size: 36px;
+}
+
+.hero-section p {
+  font-size: 18px;
+}
+
+.cta-buttons button {
+  margin: 10px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+}
+
+.feature-card {
+  margin: 20px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+}
